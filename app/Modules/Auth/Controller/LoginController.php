@@ -20,6 +20,36 @@ class LoginController extends Controller
         'password' => 'required|string',
     ];
 
+    /**
+     * @OA\Post(
+     *     path="/api/auth/login",
+     *     summary="User login",
+     *     description="Authenticate a user and return a JWT token.",
+     *     tags={"Authentication"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"email","password"},
+     *             @OA\Property(property="email", type="string", format="email", example="user@example.com"),
+     *             @OA\Property(property="password", type="string", format="password", example="secret123")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful login, returns JWT token.",
+     *         @OA\JsonContent(
+     *           @OA\Property(property="status", type="integer", example=200),
+     *           @OA\Property(property="data", type="object",
+     *               @OA\Property(property="token", type="string", example="eyJhbGciOiJIUzI1NiIsInR5cCI6...")
+     *           )
+     *        )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid email or password."
+     *     )
+     * )
+     */
     public function __invoke(Request $request): JsonResponse
     {
         Validator::validateRequest($request, $this->rules);
