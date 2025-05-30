@@ -8,10 +8,6 @@ use App\Infra\Request\Enum\RequestQueryParamsEnum;
 use App\Infra\UseCase\Read\IListUseCase;
 use Illuminate\Http\JsonResponse;
 
-/**
- * @deprecated - Usar a BaseListControllerV2
- * @see BaseListControllerV2
- */
 abstract class BaseListController extends Controller
 {
     private const int DEFAULT_PAGE = 1;

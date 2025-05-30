@@ -12,7 +12,7 @@ abstract class BaseGetController extends Controller
     abstract protected function getUseCase(): IGetUseCase;
     abstract protected function getModelName(): string;
 
-    public function __invoke(int $id): JsonResponse
+    public function __invoke(int|string $id): JsonResponse
     {
         $result = $this->getUseCase()->execute($id);
         return ResponseApi::renderOk($result);

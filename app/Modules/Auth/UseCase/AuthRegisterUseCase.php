@@ -7,12 +7,13 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthRegisterUseCase
 {
-    public function execute(string $name, string $email, string $password): array
+    public function execute(array $data): array
     {
         return User::create([
-            'name' => $name,
-            'email' => $email,
-            'password' => Hash::make($password),
+            'name' => $data['name'],
+            'type' => $data['type'] ?? 'merchant',
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
         ])->toArray();
     }
 

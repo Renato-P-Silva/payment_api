@@ -17,6 +17,7 @@ class RegisterController extends Controller
 
     protected array $rules = [
         'name' => 'required|string',
+        'type' => 'string|in:admin,merchant',
         'email' => 'required|email',
         'password' => 'required|string',
     ];
@@ -25,7 +26,7 @@ class RegisterController extends Controller
     {
         Validator::validateRequest($request, $this->rules);
         $data = $request->all();
-        $result = $this->useCase->execute($data['name'], $data['email'], $data['password']);
+        $result = $this->useCase->execute($data);
         return ResponseApi::renderCreated($result);
     }
 }

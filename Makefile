@@ -1,6 +1,6 @@
 app:
 	@echo "Starting bash..."
-	docker compose start && docker exec -it app bash
+	docker compose start && docker exec -it payment_api-app-1 bash
 
 tail:
 	@echo "Tailing logs..."

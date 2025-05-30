@@ -9,6 +9,8 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 /**
  * @property int $id
  * @property string $name
+ * @property string $type
+ * @property float $balance
  * @property string $email
  * @property string $password
  * @property string $created_at
@@ -25,6 +27,8 @@ class User extends Authenticatable implements JWTSubject
         'id',
         'name',
         'email',
+        'type',
+        'balance',
         'password',
         'created_at',
         'updated_at',
@@ -37,6 +41,7 @@ class User extends Authenticatable implements JWTSubject
     protected function casts(): array
     {
         return [
+            'balance' => 'float',
             'created_at' => 'datetime:Y-m-d H:i:s',
             'updated_at' => 'datetime:Y-m-d H:i:s',
         ];
