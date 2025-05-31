@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $updated_at
  *
  * @property-read User $merchant
- * 
+ *
  * @mixin Builder<Payment>
  */
 class Payment extends Model
@@ -99,5 +99,5 @@ class Payment extends Model
     {
         return $this->hasOne(User::class, 'id', 'merchant_id');
     }
-   
+
 }
