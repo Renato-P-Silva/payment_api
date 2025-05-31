@@ -11,7 +11,7 @@ return new class () extends Migration {
             $table->enum('type', ['admin', 'merchant'])->default('merchant')->after('password');
             $table->decimal('balance', 10, 2)->nullable()->after('type');
         });
-        
+
     }
 
     public function down(): void

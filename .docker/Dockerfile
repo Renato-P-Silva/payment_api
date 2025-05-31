@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
 	git \
 	curl \
 	libzip-dev \
-	&& docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+	&& docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip xml
 
 
 # Define o proprietário e permissões

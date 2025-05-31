@@ -17,7 +17,7 @@ Route::middleware(['auth.jwt'])->prefix('v1')->group(function () {
 
     Route::prefix('payment')->group(function () {
         Route::post('', PaymentCreateController::class)->name(ApiRouteNameEnum::ApiPaymentCreate);
-        Route::get('', PaymentListController::class)->name(ApiRouteNameEnum::ApiPaymentCreate);
+        Route::get('', PaymentListController::class)->name(ApiRouteNameEnum::ApiPaymentList);
         Route::get('{id}', PaymentGetController::class)->name(ApiRouteNameEnum::ApiPaymentGet);
     });
 

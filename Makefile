@@ -1,4 +1,4 @@
-app:
+payment_api:
 	@echo "Starting bash..."
 	docker compose start && docker exec -it payment_api-app-1 bash
 

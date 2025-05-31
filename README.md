@@ -1,14 +1,14 @@
 # Payment API
 
-Projeto onde estamos criando uma api de pagamento usando Laravel com PHP 8.4
+Project where we are creating a payment API using Laravel with PHP 8.4
 
-### Instalação
+### Instalation
 ```bash
   cp config/develop/docker/docker-compose.yml docker-compose.yml
   cp .env.example .env
   docker compose up -d
 ```
-Após rodar esses comandos, importe o bkp do banco de dados e siga com os comandos:
+After running the commands, import the database backup and continue with the commands:
 ```bash
     make app
     chown www-data:www-data -R storage/framework
@@ -17,18 +17,20 @@ Após rodar esses comandos, importe o bkp do banco de dados e siga com os comand
     php artisan key:generate
     php artisan migrate
 ```
-Para acessar a api usar o seguinte link:
+To access the API use the following link:
 ```bash
     http://localhost:8080/api/
 ```
+### Documentation
+- Swagger: http://localhost:8080/api/documentation
 
-### Comandos úteis
-- Iniciar e entrar no container: ```make app```
-- Ver logs do Laravel: ```make tail```
-- Lista comandos artisan (dentro do container): ```php artisan list```
-- Rodar pint no modo analise(dentro do container): ```composer run pint```
-- Rodar pint no modo correção(dentro do container): ```composer run pint:fix```
-- Rodar php-stan (dentro do container): ```composer run phpstan```
-- Rodar teste de unidade (dentro do container): ```composer run test:unit```
-- Rodar teste de feature (dentro do container): ```composer run test:feature```
-- Rodar processo de Deploy (dentro do container): ```make deploy```
+### Useful commands
+- Start and enter the container: ```make payment_api```
+- View Laravel logs: ```make tail```
+- List artisan commands (inside the container): ```php artisan list```
+- Run pint in analysis mode (inside the container): ```composer run pint```
+- Run pint in fix mode (inside the container): ```composer run pint:fix```
+- Run php-stan (inside the container): ```composer run phpstan```
+- Run unit test (inside the container): ```composer run test:unit```
+- Run feature test (inside the container): ```composer run test:feature```
+- Run Deploy process (inside the container): ```make deploy```

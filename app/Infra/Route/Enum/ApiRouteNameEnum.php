@@ -7,7 +7,7 @@ enum ApiRouteNameEnum: string
     case ApiAuthLogin = 'api.auth.login';
     case ApiAuthRegister = 'api.auth.register';
 
-    case ApiPaymentCreate = 'api.user.create';
-    case ApiPaymentList = 'api.user.list';
-    case ApiPaymentGet = 'api.user.get';
+    case ApiPaymentCreate = 'api.payment.create';
+    case ApiPaymentList = 'api.payment.list';
+    case ApiPaymentGet = 'api.payment.get';
 }
