@@ -11,15 +11,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
- * @property int id
- * @property string name_client
- * @property string cpf
- * @property string description
- * @property float amount
- * @property int merchant_id
- * @property string status
- * @property string method_payment
- * @property string paid_at
+ * @property int $id
+ * @property string $name_client
+ * @property string $cpf
+ * @property string $description
+ * @property float $amount
+ * @property int $merchant_id
+ * @property string $status
+ * @property string $method_payment
+ * @property string $paid_at
  * @property string $created_at
  * @property string $updated_at
  *
@@ -86,7 +86,7 @@ class Payment extends Model
                 $tax = $payment->amount - $discount;
 
                 $merchant = User::find($payment->merchant_id);
-                $merchant->balance = ((float)$merchant->balance ?? 0.0) + $tax;
+                $merchant->balance = !empty($merchant->balance) ? ((float)$merchant->balance + $tax) : $tax;
                 $merchant->save();
             }
         });

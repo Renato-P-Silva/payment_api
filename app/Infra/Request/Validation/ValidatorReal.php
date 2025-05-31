@@ -30,7 +30,7 @@ class ValidatorReal
     {
         $translatedErrors = [];
         foreach ($errors->toArray() as $field => $messages) {
-            $translatedKey = $attributes[$field] ?? ucfirst(str_replace('_', ' ', $field));
+            $translatedKey = ucfirst(str_replace('_', ' ', $field));
             $translatedErrors[$translatedKey] = $messages;
         }
 
