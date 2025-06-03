@@ -3,8 +3,7 @@
 namespace App\Models\Payment;
 
 use App\Models\User\User;
-use App\Modules\Payment\Enum\PaymentMethodEnum;
-use App\Modules\Payment\Enum\PaymentStatusEnum;
+use App\Modules\Payment\Service\PaymentService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
@@ -62,33 +61,11 @@ class Payment extends Model
         ];
     }
 
-    protected function resultProcessPaymentStatus(): string
-    {
-        $randomNumber = mt_rand(1, 100);
-        if ($randomNumber <= 70) {
-            return PaymentStatusEnum::PAID->value;
-        }
-        return PaymentStatusEnum::FAILED->value;
-    }
-
     protected static function boot(): void
     {
         parent::boot();
         static::created(function (Payment $payment) {
-            $resultProcessPaymentStatus = $payment->resultProcessPaymentStatus();
-            $payment->status = $resultProcessPaymentStatus;
-            $payment->save();
-            $payment->refresh();
-
-            if ($resultProcessPaymentStatus === PaymentStatusEnum::PAID->value) {
-                $tax = 0.0;
-                $discount = $payment->amount * PaymentMethodEnum::percents($payment->method_payment);
-                $tax = $payment->amount - $discount;
-
-                $merchant = User::find($payment->merchant_id);
-                $merchant->balance = !empty($merchant->balance) ? ((float)$merchant->balance + $tax) : $tax;
-                $merchant->save();
-            }
+            PaymentService::process($payment);
         });
     }
 
