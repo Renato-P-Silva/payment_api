@@ -9,6 +9,9 @@ class PaymentListUseCase implements IListUseCase
 {
     public function execute(int $perPage, int $page, ?array $queryParams = null): array
     {
-        return Payment::query()->paginate($perPage, ['*'], 'page', $page)->toArray();
+        return Payment::query()
+            ->where(['merchant_id' => auth()->user()->id])
+            ->paginate($perPage, ['*'], 'page', $page)
+            ->toArray();
     }
 }
